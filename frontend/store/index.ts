@@ -17,6 +17,7 @@ const useTodoStore = create<State>()(
     persist(
       immer((set) => {
         return {
+          todos: [],
           dispatch: (args) => set((state) => reducer(state, args)),
         };
       }),

@@ -5,7 +5,14 @@ interface Action {
   payload: any;
 }
 
+interface Todo {
+  id: string;
+  title: string;
+  description: string;
+}
+
 interface State {
+  todos: Todo[];
   dispatch: (args: Action) => void;
 }
 
