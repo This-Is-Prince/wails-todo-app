@@ -1,7 +1,11 @@
+import Todos from "./Todos";
+
 const Body = () => {
   return (
-    <div>Body</div>
-  )
-}
+    <main>
+      <Todos />
+    </main>
+  );
+};
 
-export default Body
+export default Body;

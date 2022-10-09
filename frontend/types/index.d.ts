@@ -5,17 +5,17 @@ interface Action {
   payload: any;
 }
 
-interface Todo {
+interface ITodo {
   id: string;
   title: string;
   description: string;
 }
 
 interface State {
-  todos: Todo[];
+  todos: ITodo[];
   dispatch: (args: Action) => void;
 }
 
 type Reducer = (state: State, action: Action) => State;
 
-export { Action, State, Reducer };
+export { Action, State, Reducer, ITodo };

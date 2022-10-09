@@ -3,10 +3,14 @@ import { devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { Reducer, State } from "../types";
 
-enum ActionType {}
+enum ActionType {
+  AddTodo,
+}
 
 const reducer: Reducer = (state, action) => {
   switch (action.type) {
+    case ActionType.AddTodo:
+      return { ...state, todos: [...state.todos, action.payload] };
     default:
       return state;
   }

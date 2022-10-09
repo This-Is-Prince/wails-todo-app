@@ -2,7 +2,8 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"math/rand"
+	"strconv"
 )
 
 // App struct
@@ -21,7 +22,21 @@ func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 }
 
-// Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
+type AddTodoReq struct {
+	Title       string `json:"title"`
+	Description string `json:"description"`
+}
+
+type AddTodoRes struct {
+	Id          string `json:"id"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+}
+
+func (a *App) AddTodo(req AddTodoReq) AddTodoRes {
+	return AddTodoRes{
+		Id:          strconv.Itoa(rand.Intn(100_000_000)),
+		Title:       req.Title,
+		Description: req.Description,
+	}
 }

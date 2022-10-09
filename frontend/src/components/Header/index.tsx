@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import useTodoStore from "../../../store";
+import useTodoStore, { ActionType } from "../../../store";
+import { AddTodo } from "../../../wailsjs/go/main/App";
+import { main } from "../../../wailsjs/go/models";
 
 const Header = () => {
   const [todo, setTodo] = useState({ title: "", description: "" });
@@ -12,10 +14,16 @@ const Header = () => {
       return { ...prevTodo, [e.target.name]: e.target.value };
     });
   };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (todo.title.length >= 3 && todo.description.length >= 5) {
-      console.log('hi')
+      const todoReq = new main.AddTodoReq(todo);
+      try {
+        const res = await AddTodo(todoReq);
+        dispatch({ type: ActionType.AddTodo, payload: res });
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
@@ -63,7 +71,11 @@ const Header = () => {
           ></textarea>
         </div>
         <div>
-          <input type="submit" value="Create Todo" className="bg-white text-black rounded-md px-5 py-2 cursor-pointer italic" />
+          <input
+            type="submit"
+            value="Create Todo"
+            className="bg-white text-black rounded-md px-5 py-2 cursor-pointer italic"
+          />
         </div>
       </form>
     </header>

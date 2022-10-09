@@ -16,10 +16,10 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:            "wails-todo-app",
+		Title:            "Todo Desktop App",
 		Width:            1024,
 		Height:           768,
-		Assets:           assets,
+		Assets:           &assets,
 		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
 		OnStartup:        app.startup,
 		Bind: []interface{}{
