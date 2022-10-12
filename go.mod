@@ -1,4 +1,4 @@
-module changeme
+module github.com/This-Is-Prince/wails-todo-app
 
 go 1.18
 
