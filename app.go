@@ -4,6 +4,8 @@ import (
 	"context"
 	"math/rand"
 	"strconv"
+
+	"github.com/This-Is-Prince/wails-todo-app/server"
 )
 
 // App struct
@@ -20,6 +22,8 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+	server := server.NewServer()
+	server.Start()
 }
 
 type AddTodoReq struct {
